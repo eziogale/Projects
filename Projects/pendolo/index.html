@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>pendolo3.nb</title>
+  <link href="../../css/common.css" rel="stylesheet" type="text/css">
+</head>
+<body style="background-color: rgb(255, 255, 255);">
+<!-- // *** Barra di navigazione - inizio *** // -->
+<hr align="center" width="100%">
+<center>
+<table class="navbar">
+  <tbody>
+    <tr>
+      <td><a href="../../index.html">HOME</a></td>
+      <td><a href="../../Personal/personal.html">PERSONAL</a></td>
+      <td><a href="../../Projects/projects.html">PROJECTS</a></td>
+      <td>LINKS</td>
+      <td><a href="mailto:eziogale@libero.it">E-MAIL</a></td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<hr align="center" width="100%"><!-- // *** Barra di navigazione - fine *** // -->
+<pre><code></code></pre>
+<h1> Pendolo perturbato </h1>
+<h3> Il sistema </h3>
+<p> Studiamo il sitema meccanico costituito da un pendolo classico la
+cui cerniera &egrave; messa un moto circolare uniforme per mezzo di da
+un motore in corrente continua.<br>
+I parametri del sistema sono quindi il raggio del moto della cerniera
+attorno all'asse del motore, la lunghezza del baccio e la pulsazione &#969;
+del motore.<br>
+Si studier&agrave; infine il sistema con l'aggiunta di un ulteriore
+braccio per simulare le equazioni del bipendolo in presenza di
+preturbazioni: in questo caso il numero dei parametri salir&agrave; a 4. </p>
+<p> Lo scopo della simulazione &egrave; di individuare particolari
+condizioni di moto, in particolare attrattori periodici e aperiodici,
+per identificare la possibilit&agrave; di realizzare fisicamente il
+pendolo perturbato e realizzare cos&igrave; un gadget che mostri
+all'osservatore traiettorie caotiche. Per questo motivo si sono adottate
+le seguenti approssimazioni:<br>
+l'unica massa in gioco &egrave; collocata all'estremit&agrave;
+dell'ultimo segmento rigido ed &egrave; posta pari ad 1, i segmenti
+rigidi di fatto non hanno massa.<br>
+Una volta identificate le condizioni di moto pi&ugrave; interessanti si
+potr&agrave; passare ad una simulazione numerica con parametri fisici
+pi&ugrave; accurati per passare alla fase di realizzazione.<br>
+L'assunzione di segmenti senza massa introduce un errore nel moto
+correggibile con l'opportuna calibrazione degli altri parametri:
+lunghezze e massa dell'unico peso. </p>
+<p> Sia O l'origine del nostro sistema di riferimento cartesiano, A il
+punto che viaggia con moto circolare attorno ad O e B l'estremo del
+segmento che sostiene la massa. Nel caso del bipendolo la massa
+sar&agrave; collocata in C, estremo libero del segmento incernierato a
+B. </p>
+<h3> Pendolo semplice perturbato nello spazio delle fasi </h3>
+<pre><code><b><img src="Images/index_gr_2.gif" border="0"
+ alt="[Graphics:Images/index_gr_2.gif]" hspace="45" width="232"
+ height="21" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_3.gif" border="0"
+ alt="[Graphics:Images/index_gr_3.gif]" hspace="45" width="243"
+ height="28" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_4.gif" border="0"
+ alt="[Graphics:Images/index_gr_4.gif]" hspace="47" width="172"
+ height="17" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_5.gif" border="0"
+ alt="[Graphics:Images/index_gr_5.gif]" hspace="45" width="289"
+ height="28" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_6.gif" border="0"
+ alt="[Graphics:Images/index_gr_6.gif]" hspace="47" width="355"
+ height="17" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_7.gif" border="0"
+ alt="[Graphics:Images/index_gr_7.gif]" hspace="45" width="127"
+ height="30" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_8.gif" border="0"
+ alt="[Graphics:Images/index_gr_8.gif]" hspace="47" width="494"
+ height="30" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_9.gif" border="0"
+ alt="[Graphics:Images/index_gr_9.gif]" hspace="45" width="55"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_10.gif" border="0"
+ alt="[Graphics:Images/index_gr_10.gif]" hspace="47" width="171"
+ height="17" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_11.gif" border="0"
+ alt="[Graphics:Images/index_gr_11.gif]" hspace="45" width="174"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_12.gif" border="0"
+ alt="[Graphics:Images/index_gr_12.gif]" hspace="47" width="529"
+ height="30" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_13.gif" border="0"
+ alt="[Graphics:Images/index_gr_13.gif]" hspace="45" width="245"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_14.gif" border="0"
+ alt="[Graphics:Images/index_gr_14.gif]" hspace="47" width="544"
+ height="30" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_15.gif" border="0"
+ alt="[Graphics:Images/index_gr_15.gif]" hspace="45" width="171"
+ height="138" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_16.gif" border="0"
+ alt="[Graphics:Images/index_gr_16.gif]" hspace="45" width="171"
+ height="138" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_17.gif" border="0"
+ alt="[Graphics:Images/index_gr_17.gif]" hspace="45" width="60"
+ height="18" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_18.gif" border="0"
+ alt="[Graphics:Images/index_gr_18.gif]" hspace="45" width="198"
+ height="18" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_19.gif" border="0"
+ alt="[Graphics:Images/index_gr_19.gif]" hspace="45" width="810"
+ height="99" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_20.gif" border="0"
+ alt="[Graphics:Images/index_gr_20.gif]" hspace="45" width="761"
+ height="16" align="middle"></samp></pre>
+<p> <img src="Images/index_gr_21.gif" border="0"
+ alt="[Graphics:Images/index_gr_21.gif]" hspace="4" width="288"
+ height="178" align="middle"></p>
+<h3> Pendolo semplice perturbato nello spazio delle coordinate </h3>
+<pre><code><b><img src="Images/index_gr_22.gif" border="0"
+ alt="[Graphics:Images/index_gr_22.gif]" hspace="45" width="833"
+ height="18" align="middle"></b></code></pre>
+<p> <img src="Images/index_gr_23.gif" border="0"
+ alt="[Graphics:Images/index_gr_23.gif]" hspace="4" width="288"
+ height="288" align="middle"></p>
+<pre><code><b><img src="Images/index_gr_24.gif" border="0"
+ alt="[Graphics:Images/index_gr_24.gif]" hspace="45" width="83"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_25.gif" border="0"
+ alt="[Graphics:Images/index_gr_25.gif]" hspace="47" width="18"
+ height="17" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_26.gif" border="0"
+ alt="[Graphics:Images/index_gr_26.gif]" hspace="45" width="12"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_27.gif" border="0"
+ alt="[Graphics:Images/index_gr_27.gif]" hspace="47" width="355"
+ height="17" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_28.gif" border="0"
+ alt="[Graphics:Images/index_gr_28.gif]" hspace="45" width="834"
+ height="111" align="middle"></b></code></pre>
+<a href="Links/index_lnk_1.htmll">
+<p> <img src="Images/anim.gif"
+ style="border: 0px solid ; width: 288px; height: 288px;"
+ alt="[Graphics:Images/index_gr_312.gif]" hspace="4" align="middle"
+ title=""></p>
+</a>
+<h3> Bipendolo Perturbato </h3>
+<pre><code><b><img src="Images/index_gr_313.gif" border="0"
+ alt="[Graphics:Images/index_gr_313.gif]" hspace="45" width="232"
+ height="21" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_314.gif" border="0"
+ alt="[Graphics:Images/index_gr_314.gif]" hspace="45" width="243"
+ height="28" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_315.gif" border="0"
+ alt="[Graphics:Images/index_gr_315.gif]" hspace="47" width="172"
+ height="17" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_316.gif" border="0"
+ alt="[Graphics:Images/index_gr_316.gif]" hspace="45" width="289"
+ height="28" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_317.gif" border="0"
+ alt="[Graphics:Images/index_gr_317.gif]" hspace="47" width="355"
+ height="17" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_318.gif" border="0"
+ alt="[Graphics:Images/index_gr_318.gif]" hspace="45" width="290"
+ height="28" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_319.gif" border="0"
+ alt="[Graphics:Images/index_gr_319.gif]" hspace="47" width="537"
+ height="17" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_320.gif" border="0"
+ alt="[Graphics:Images/index_gr_320.gif]" hspace="45" width="127"
+ height="30" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_321.gif" border="0"
+ alt="[Graphics:Images/index_gr_321.gif]" hspace="47" width="745"
+ height="30" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_322.gif" border="0"
+ alt="[Graphics:Images/index_gr_322.gif]" hspace="45" width="55"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_323.gif" border="0"
+ alt="[Graphics:Images/index_gr_323.gif]" hspace="47" width="262"
+ height="17" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_324.gif" border="0"
+ alt="[Graphics:Images/index_gr_324.gif]" hspace="45" width="174"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_325.gif" border="0"
+ alt="[Graphics:Images/index_gr_325.gif]" hspace="47" width="742"
+ height="50" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_326.gif" border="0"
+ alt="[Graphics:Images/index_gr_326.gif]" hspace="45" width="443"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_327.gif" border="0"
+ alt="[Graphics:Images/index_gr_327.gif]" hspace="47" width="772"
+ height="50" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_328.gif" border="0"
+ alt="[Graphics:Images/index_gr_328.gif]" hspace="45" width="171"
+ height="138" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_329.gif" border="0"
+ alt="[Graphics:Images/index_gr_329.gif]" hspace="45" width="53"
+ height="18" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_330.gif" border="0"
+ alt="[Graphics:Images/index_gr_330.gif]" hspace="45" width="245"
+ height="18" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_331.gif" border="0"
+ alt="[Graphics:Images/index_gr_331.gif]" hspace="45" width="929"
+ height="139" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_332.gif" border="0"
+ alt="[Graphics:Images/index_gr_332.gif]" hspace="45" width="761"
+ height="16" align="middle"></samp></pre>
+<p> <img src="Images/index_gr_333.gif" border="0"
+ alt="[Graphics:Images/index_gr_333.gif]" hspace="4" width="288"
+ height="178" align="middle"></p>
+<pre><code><b><img src="Images/index_gr_334.gif" border="0"
+ alt="[Graphics:Images/index_gr_334.gif]" hspace="45" width="799"
+ height="38" align="middle"></b></code></pre>
+<p> <img src="Images/index_gr_335.gif" border="0"
+ alt="[Graphics:Images/index_gr_335.gif]" hspace="4" width="288"
+ height="358" align="middle"></p>
+<hr> <font face="Helvetica, Arial" size="1">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;October 6, 2003</font><!-- // *** Barra di navigazione - inizio *** // -->
+<hr align="center" width="100%">
+<center>
+<table class="navbar">
+  <tbody>
+    <tr>
+      <td><a href="../../index.html">HOME</a></td>
+      <td><a href="../../Personal/personal.html">PERSONAL</a></td>
+      <td><a href="../../Projects/projects.html">PROJECTS</a></td>
+      <td>LINKS</td>
+      <td><a href="mailto:eziogale@libero.it">E-MAIL</a></td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<hr align="center" width="100%"><!-- // *** Barra di navigazione - fine *** // -->
+</body>
+</html>
