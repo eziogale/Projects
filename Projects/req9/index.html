@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>r_eq9.nb</title>
+  <link href="../../css/common.css" rel="stylesheet" type="text/css">
+</head>
+<body style="background-color: rgb(255, 255, 255);">
+<!-- // *** Barra di navigazione - inizio *** // -->
+<hr align="center" width="100%">
+<center>
+<table class="navbar">
+  <tbody>
+    <tr>
+      <td><a href="../../index.html">HOME</a></td>
+      <td><a href="../../Personal/personal.html">PERSONAL</a></td>
+      <td><a href="../../Projects/projects.html">PROJECTS</a></td>
+      <td>LINKS</td>
+      <td><a href="mailto:eziogale@libero.it">E-MAIL</a></td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<hr align="center" width="100%"><!-- // *** Barra di navigazione - fine *** // -->
+<h1> Resistenza equivalente di una rete passiva </h1>
+<h2> Come avvicinarsi ad un valore di resistenza combinando in serie e
+parallelo le resistenze di un insieme assegnato. </h2>
+<h3> Documentazione </h3>
+<p> Non sarebbe molto utile una procedura a cui poter chiedere:<br>
+"ti do questo sacchetto di resistenze, tutte quelle che ho in
+laboratorio, mi trovi la rete che utilizzando il numero minimo di
+componenti si avvicina di pi&ugrave; al valore che desidero?". </p>
+<h3> Implementazione </h3>
+<p> Le funzioni parallel[] e serie[] sono gli operatori serie e
+parallelo; accettano una lista e restituiscono un numero. </p>
+<pre><code><b><img src="Images/index_gr_1.gif" border="0"
+ alt="[Graphics:Images/index_gr_1.gif]" hspace="45" width="211"
+ height="42" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_2.gif" border="0"
+ alt="[Graphics:Images/index_gr_2.gif]" hspace="45" width="165"
+ height="40" align="middle"></b></code></pre>
+<p> Le funzioni parallelrete[] e serierete[] applicano le funzioni
+precedenti a tutti gli elementi della lista; l'argomento di queste
+funzioni deve essere una lista di liste. </p>
+<pre><code><b><img src="Images/index_gr_3.gif" border="0"
+ alt="[Graphics:Images/index_gr_3.gif]" hspace="45" width="394"
+ height="18" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_4.gif" border="0"
+ alt="[Graphics:Images/index_gr_4.gif]" hspace="45" width="350"
+ height="18" align="middle"></b></code></pre>
+<p> A cosa servono queste ultime funzioni?<br>
+Dato un insieme di resistenze e fissato uno schema, si pu&ograve;
+costruitre uno schema differente scambiando l'ordine di applicazione
+degli operatori serie e parallelo.<br>
+Allo scopo di trovare tutte le possibili combinazioni delle resistenze
+date, si utilizzer&agrave; l'espressione ser[par[{}]] o l'analoga
+par[ser[{}]] avendo l'accortezza di utilizzare per l'operatore
+pi&ugrave; interno parallelrete (serierete ). </p>
+<p> Seguono funzioni ausiliarie utili alla costruzione di diverse
+funzioni per partizionare l'insieme delle resistenze di partenza in
+sottoinsiemi di ordine n, tenendo o no in cosiderazione le ripetizioni,
+le permutazioni ed eventuali simmetrie. </p>
+<pre><code><b><img src="Images/index_gr_5.gif" border="0"
+ alt="[Graphics:Images/index_gr_5.gif]" hspace="45" width="475"
+ height="58" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_6.gif" border="0"
+ alt="[Graphics:Images/index_gr_6.gif]" hspace="45" width="665"
+ height="78" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_7.gif" border="0"
+ alt="[Graphics:Images/index_gr_7.gif]" hspace="45" width="697"
+ height="118" align="middle"></b></code></pre>
+<p> La funzione rete[] accetta una lista di elementi (distinti o no,
+senza ordine), e ne tira fuori una lista di tutte le possibili
+combinazioni (utilizzado sempre tutti gli elementi ). Se la lista
+&egrave; di numeri ho in uscita i valori numerici di tutte
+le&nbsp;&nbsp;resistenze equivalenti che posso ottenere. </p>
+<pre><code><b><img src="Images/index_gr_8.gif" border="0"
+ alt="[Graphics:Images/index_gr_8.gif]" hspace="45" width="703"
+ height="118" align="middle"></b></code></pre>
+<p> La funzione requivalent[], a differenza della rete[], considera
+anche reti composte da sottoinsiemi di lunghezza qualsiasi.<br>
+In qesto modo scopro tutti valori di resistenza che posso ottenere da
+un secchetto di resistenze assegnato. </p>
+<pre><code><b><img src="Images/index_gr_9.gif" border="0"
+ alt="[Graphics:Images/index_gr_9.gif]" hspace="45" width="405"
+ height="58" align="middle"></b></code></pre>
+<p> tovaequivalente[] invece accetta in ingresso i soli valori numerici
+delle resisteze, e restituisce per ogni combinazione una lista composta
+da: il valore della resistenza equivalente, lo scarto percentuale
+rispetto al valore target, l'espressione simbolica corrispondente
+utilizzando una lista di simboli del tipo {R1, R2, R3, ..}, e infine la
+lista delle sostituzioni {R1 -&gt; valore 1, R2 -&gt; valore2, R3 -&gt;
+valore 3, ..}.<br>
+La lista complessiva di uscita &egrave; inoltre ordinata in senso
+crescente secondo il campo degli scarti. </p>
+<pre><code><b><img src="Images/index_gr_10.gif" border="0"
+ alt="[Graphics:Images/index_gr_10.gif]" hspace="45" width="641"
+ height="116" align="middle"></b></code></pre>
+<p> La funzione trovaeq[] trova tutti gli schemi possibili a partire da
+un insieme costruito da resistenecomuni prelevando n+2 m valori di
+resistenze "satndard", centrato sul valore pi&ugrave; prossimo a target
+e prendendo n/2+m valori successivi e n/2+m precedenti.<br>
+Inoltre la lista dei risultati, ordinati come sopra, &egrave; troncata
+ai primi risultati che hanno scarto percentuale minore o uguale a err. </p>
+<pre><code><b><img src="Images/index_gr_11.gif" border="0"
+ alt="[Graphics:Images/index_gr_11.gif]" hspace="45" width="610"
+ height="269" align="middle"></b></code></pre>
+<h3> Esempi </h3>
+<pre><code><b><img src="Images/index_gr_12.gif" border="0"
+ alt="[Graphics:Images/index_gr_12.gif]" hspace="45" width="306"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_13.gif" border="0"
+ alt="[Graphics:Images/index_gr_13.gif]" hspace="47" width="510"
+ height="221" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_14.gif" border="0"
+ alt="[Graphics:Images/index_gr_14.gif]" hspace="45" width="306"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_15.gif" border="0"
+ alt="[Graphics:Images/index_gr_15.gif]" hspace="47" width="524"
+ height="1207" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_16.gif" border="0"
+ alt="[Graphics:Images/index_gr_16.gif]" hspace="45" width="306"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_17.gif" border="0"
+ alt="[Graphics:Images/index_gr_17.gif]" hspace="47" width="524"
+ height="2697" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_18.gif" border="0"
+ alt="[Graphics:Images/index_gr_18.gif]" hspace="45" width="306"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_19.gif" border="0"
+ alt="[Graphics:Images/index_gr_19.gif]" hspace="47" width="524"
+ height="3753" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_20.gif" border="0"
+ alt="[Graphics:Images/index_gr_20.gif]" hspace="45" width="306"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_21.gif" border="0"
+ alt="[Graphics:Images/index_gr_21.gif]" hspace="47" width="538"
+ height="5437" align="middle"></samp></pre>
+<!-- // *** Barra di navigazione - inizio *** // -->
+<hr align="center" width="100%">
+<center>
+<table class="navbar">
+  <tbody>
+    <tr>
+      <td><a href="../../index.html">HOME</a></td>
+      <td><a href="../../Personal/personal.html">PERSONAL</a></td>
+      <td><a href="../../Projects/projects.html">PROJECTS</a></td>
+      <td>LINKS</td>
+      <td><a href="mailto:eziogale@libero.it">E-MAIL</a></td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<hr align="center" width="100%"><!-- // *** Barra di navigazione - fine *** // -->
+</body>
+</html>

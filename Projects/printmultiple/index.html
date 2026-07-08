@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>printmultiple.nb</title>
+  <link href="../../css/common.css" rel="stylesheet" type="text/css">
+</head>
+<body style="background-color: rgb(255, 255, 255);">
+<!-- // *** Barra di navigazione - inizio *** // -->
+<hr align="center" width="100%">
+<center>
+<table class="navbar">
+  <tbody>
+    <tr>
+      <td><a href="../../index.html">HOME</a></td>
+      <td><a href="../../Personal/personal.html">PERSONAL</a></td>
+      <td><a href="../../Projects/projects.html">PROJECTS</a></td>
+      <td>LINKS</td>
+      <td><a href="mailto:eziogale@libero.it">E-MAIL</a></td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<hr align="center" width="100%"><!-- // *** Barra di navigazione - fine *** // -->
+<h1> Printing images in multiple pages </h1>
+<h2> 13/06/00 </h2>
+<h3> Documentation </h3>
+<p> There are two ways to improve resolution of the printed images: to
+buy a better printer (or plotter) or to cut the picture in multiple
+pages. </p>
+<p> What we need is a function that shows several graphics from the
+input one.<br>
+The first matter is: how can I choose the number and the orientation of
+the sheets? </p>
+<p> To have an idea of the cut to be made, the function
+"ShowGridPreview[]" prints out the graphics covered by a grid.<br>
+The grid parameters are "shape, n, Verticaldivision, Verticalsheets".<br>
+Shape stands for the ratio of the paper dimensions.<br>
+The width of the graphics is divided in n parts if the parameter
+verticaldivision is set to True, otherwise the lenght is patitioned in n
+parts.<br>
+If the parameter Verticalsheets is True, the boxes of the grid are like
+a "shape" box, otherwise they are "1/shape" box.<br>
+Then the grid is centered on the graphics.<br>
+The option DisplayGraphics can assume the values:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None:in this case no graphics are displayed and
+the routine gives a list of ranges, each range can be passed to the Show
+option PlotRange.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;All: in this case all the graphics are diplayed,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;n: the number n specifies that only the first n
+graphics are displayed,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-n: specifies that only the last n graphics are
+displayed,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{m, n}: specifies that only the graphics
+between n and m are displayed.<br>
+When the option DisplayGraphics is different from All or None, it's
+value is passed to a Take function witch selects the graphics. </p>
+<p> The most commnon printers uses A4 sheets.<br>
+In this case the parameter "shape" will be equal to <img
+ src="Images/index_gr_1.gif" border="0"
+ alt="[Graphics:Images/index_gr_1.gif]" width="26" height="18"
+ align="middle"> , infact the size of the sheets is 210 x 297 mm. </p>
+<p> Unfortunely the size of the graphics is unknow.<br>
+The only way I've found to know the graphic's size is to Show it, to
+select it and to use the menu command "Input -&gt; Get Graphics
+Coordinate".<br>
+Once you get the minimum and the maximimum value of the width and
+lenght of the graphic, put this number in a list of list like this:
+{{minx, maxx}, {miny, maxy}}, then assign this list to the parameter
+"shape". </p>
+<p> Fortunely the predefinited function Show accepts the option
+ImageSize which specifies the absolute size of an image to render. <br>
+ImageSize-&gt;x specifies that the image should have a width of x
+printer's points, so the final step to do is to send the output of the
+function ShowGrid[] to the printer. </p>
+<h3> Implementation </h3>
+<pre><code><b><img src="Images/index_gr_2.gif" border="0"
+ alt="[Graphics:Images/index_gr_2.gif]" hspace="60" width="928"
+ height="46" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_3.gif" border="0"
+ alt="[Graphics:Images/index_gr_3.gif]" hspace="60" width="928"
+ height="437" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_4.gif" border="0"
+ alt="[Graphics:Images/index_gr_4.gif]" hspace="60" width="928"
+ height="555" align="middle"></b></code></pre>
+<h3> Examples </h3>
+<pre><code><b><img src="Images/index_gr_5.gif" border="0"
+ alt="[Graphics:Images/index_gr_5.gif]" hspace="60" width="928"
+ height="34" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_6.gif" border="0"
+ alt="[Graphics:Images/index_gr_6.gif]" hspace="60" width="928"
+ height="34" align="middle"></b></code></pre>
+<p> <img src="Images/index_gr_7.gif" border="0"
+ alt="[Graphics:Images/index_gr_7.gif]" hspace="60" width="928"
+ height="266" align="middle"> </p>
+<pre><code><b><img src="Images/index_gr_8.gif" border="0"
+ alt="[Graphics:Images/index_gr_8.gif]" hspace="60" width="928"
+ height="34" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_9.gif" border="0"
+ alt="[Graphics:Images/index_gr_9.gif]" hspace="60" width="928"
+ height="37" align="middle"></b></code></pre>
+<p> <img src="Images/index_gr_10.gif" border="0"
+ alt="[Graphics:Images/index_gr_10.gif]" hspace="60" width="928"
+ height="177" align="middle"> </p>
+<pre><code><b><img src="Images/index_gr_11.gif" border="0"
+ alt="[Graphics:Images/index_gr_11.gif]" hspace="60" width="928"
+ height="37" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_12.gif" border="0"
+ alt="[Graphics:Images/index_gr_12.gif]" hspace="60" width="928"
+ height="71" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_13.gif" border="0"
+ alt="[Graphics:Images/index_gr_13.gif]" hspace="60" width="928"
+ height="37" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_14.gif" border="0"
+ alt="[Graphics:Images/index_gr_14.gif]" hspace="60" width="928"
+ height="71" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_15.gif" border="0"
+ alt="[Graphics:Images/index_gr_15.gif]" hspace="60" width="928"
+ height="37" align="middle"></b></code></pre>
+<p> <img src="Images/index_gr_16.gif" border="0"
+ alt="[Graphics:Images/index_gr_16.gif]" hspace="60" width="928"
+ height="123" align="middle"> </p>
+<p> <img src="Images/index_gr_17.gif" border="0"
+ alt="[Graphics:Images/index_gr_17.gif]" hspace="60" width="928"
+ height="123" align="middle"> </p>
+<p> <img src="Images/index_gr_18.gif" border="0"
+ alt="[Graphics:Images/index_gr_18.gif]" hspace="60" width="928"
+ height="123" align="middle"> </p>
+<p> <img src="Images/index_gr_19.gif" border="0"
+ alt="[Graphics:Images/index_gr_19.gif]" hspace="60" width="928"
+ height="123" align="middle"> </p>
+<p> <img src="Images/index_gr_20.gif" border="0"
+ alt="[Graphics:Images/index_gr_20.gif]" hspace="60" width="928"
+ height="123" align="middle"> </p>
+<p> <img src="Images/index_gr_21.gif" border="0"
+ alt="[Graphics:Images/index_gr_21.gif]" hspace="60" width="928"
+ height="123" align="middle"> </p>
+<pre><code><b><img src="Images/index_gr_22.gif" border="0"
+ alt="[Graphics:Images/index_gr_22.gif]" hspace="60" width="928"
+ height="37" align="middle"></b></code></pre>
+<p> <img src="Images/index_gr_23.gif" border="0"
+ alt="[Graphics:Images/index_gr_23.gif]" hspace="60" width="928"
+ height="123" align="middle"> </p>
+<p> <img src="Images/index_gr_24.gif" border="0"
+ alt="[Graphics:Images/index_gr_24.gif]" hspace="60" width="928"
+ height="123" align="middle"> </p>
+<hr> <font face="Helvetica, Arial" size="1">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;October 6, 2003</font><!-- // *** Barra di navigazione - inizio *** // -->
+<hr align="center" width="100%">
+<center>
+<table class="navbar">
+  <tbody>
+    <tr>
+      <td><a href="../../index.html">HOME</a></td>
+      <td><a href="../../Personal/personal.html">PERSONAL</a></td>
+      <td><a href="../../Projects/projects.html">PROJECTS</a></td>
+      <td>LINKS</td>
+      <td><a href="mailto:eziogale@libero.it">E-MAIL</a></td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<hr align="center" width="100%"><!-- // *** Barra di navigazione - fine *** // --> <br>
+</body>
+</html>
