@@ -1,0 +1,786 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>lima16.nb</title>
+  <link href="../../css/common.css" rel="stylesheet" type="text/css">
+</head>
+<body style="background-color: rgb(255, 255, 255);">
+<!-- // *** Barra di navigazione - inizio *** // -->
+<hr align="center" width="100%">
+<center>
+<table class="navbar">
+  <tbody>
+    <tr>
+      <td><a href="../../index.html">HOME</a></td>
+      <td><a href="../../Personal/personal.html">PERSONAL</a></td>
+      <td><a href="../../Projects/projects.html">PROJECTS</a></td>
+      <td>LINKS</td>
+      <td><a href="mailto:eziogale@libero.it">E-MAIL</a></td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<hr align="center" width="100%"><!-- // *** Barra di navigazione - fine *** // -->
+<h1> Lima shapes </h1>
+<h2> Funzione grafica che aggiunge poligoni ad un oggetto per renderne i
+contorni pi&ugrave; dolci. </h2>
+<h3><i> 10/11/00 </i></h3>
+<h3> Implementazione </h3>
+<p> La procedura si articola in tre parti: la costruzione dei poligoni
+ristretti e il ricoprimento degli spazi rimasti aperti per mezzo dei
+poligoni laterali (rettangoli che giaciono tra i lati di due poly
+affiancati) e centrali (poligoni che sostituiscono i vertici
+dell'oggetto originale). </p>
+<a name="S2.9.8"></a><a name="S2.9.8">
+<pre><code><b><img src="Images/index_gr_1.gif" border="0"
+ alt="[Graphics:Images/index_gr_1.gif]" hspace="56" width="200"
+ height="19" align="middle"></b></code></pre>
+</a>
+<pre><code><b><img src="Images/index_gr_2.gif" border="0"
+ alt="[Graphics:Images/index_gr_2.gif]" hspace="56" width="456"
+ height="54" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_3.gif" border="0"
+ alt="[Graphics:Images/index_gr_3.gif]" hspace="56" width="445"
+ height="59" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_4.gif" border="0"
+ alt="[Graphics:Images/index_gr_4.gif]" hspace="56" width="199"
+ height="19" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_5.gif" border="0"
+ alt="[Graphics:Images/index_gr_5.gif]" hspace="56" width="970"
+ height="299" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_6.gif" border="0"
+ alt="[Graphics:Images/index_gr_6.gif]" hspace="56" width="220"
+ height="19" align="middle"></b></code></pre>
+<a name="Cuboid"></a><a name="Cuboid">
+<pre><code><b><img src="Images/index_gr_7.gif" border="0"
+ alt="[Graphics:Images/index_gr_7.gif]" hspace="56" width="876"
+ height="113" align="middle"></b></code></pre>
+</a>
+<pre><code><b><img src="Images/index_gr_8.gif" border="0"
+ alt="[Graphics:Images/index_gr_8.gif]" hspace="56" width="362"
+ height="47" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_9.gif" border="0"
+ alt="[Graphics:Images/index_gr_9.gif]" hspace="57" width="603"
+ height="37" align="middle"></samp></pre>
+<h3> Convergenza </h3>
+<p> Prima di procedere alla costruzione della funzione che opera su
+poligoni tridimensionali &egrave; interessante verificare in 2 D
+l'effetto di una applicazione della routine innestata pi&ugrave; volte.<br>
+La curva risultante converge ad una curva dolce, oppure produce una
+distorsione progressiva? </p>
+<pre><code><b><img src="Images/index_gr_10.gif" border="0"
+ alt="[Graphics:Images/index_gr_10.gif]" hspace="56" width="496"
+ height="19" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_11.gif" border="0"
+ alt="[Graphics:Images/index_gr_11.gif]" hspace="56" width="399"
+ height="19" align="middle"></b></code></pre>
+<p> <img src="Images/index_gr_12.gif" border="0"
+ alt="[Graphics:Images/index_gr_12.gif]" hspace="56" width="288"
+ height="178" align="middle"></p>
+<pre><code><b><img src="Images/index_gr_13.gif" border="0"
+ alt="[Graphics:Images/index_gr_13.gif]" hspace="56" width="630"
+ height="19" align="middle"></b></code></pre>
+<p> <img src="Images/anim1.gif"
+ style="border: 0px solid ; width: 288px; height: 288px;"
+ alt="[Graphics:Images/index_gr_21.gif]" hspace="56" align="middle"
+ title=""></p>
+<pre><code><b><img src="Images/index_gr_22.gif" border="0"
+ alt="[Graphics:Images/index_gr_22.gif]" hspace="56" width="191"
+ height="19" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_23.gif" border="0"
+ alt="[Graphics:Images/index_gr_23.gif]" hspace="56" width="188"
+ height="19" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_24.gif" border="0"
+ alt="[Graphics:Images/index_gr_24.gif]" hspace="56" width="645"
+ height="19" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_25.gif" border="0"
+ alt="[Graphics:Images/index_gr_25.gif]" hspace="56" width="175"
+ height="19" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_26.gif" border="0"
+ alt="[Graphics:Images/index_gr_26.gif]" hspace="57" width="504"
+ height="18" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_27.gif" border="0"
+ alt="[Graphics:Images/index_gr_27.gif]" hspace="56" width="635"
+ height="19" align="middle"></b></code></pre>
+<p> <img src="Images/anim2.gif"
+ style="border: 0px solid ; width: 288px; height: 288px;"
+ alt="[Graphics:Images/index_gr_36.gif]" hspace="56" align="middle"
+ title=""></p>
+<pre><code><b><img src="Images/index_gr_37.gif" border="0"
+ alt="[Graphics:Images/index_gr_37.gif]" hspace="56" width="635"
+ height="19" align="middle"></b></code></pre>
+<p> <img src="Images/anim3.gif"
+ style="border: 0px solid ; width: 288px; height: 288px;"
+ alt="[Graphics:Images/index_gr_46.gif]" hspace="56" align="middle"
+ title=""></p>
+<h4> CircularRatio </h4>
+<pre><code><b><img src="Images/index_gr_47.gif" border="0"
+ alt="[Graphics:Images/index_gr_47.gif]" hspace="56" width="319"
+ height="19" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_48.gif" border="0"
+ alt="[Graphics:Images/index_gr_48.gif]" hspace="57" width="299"
+ height="18" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_49.gif" border="0"
+ alt="[Graphics:Images/index_gr_49.gif]" hspace="56" width="811"
+ height="39" align="middle"></b></code></pre>
+<p> <img src="Images/anim4.gif"
+ style="border: 0px solid ; width: 679px; height: 378px;"
+ alt="[Graphics:Images/index_gr_58.gif]" hspace="56" align="middle"
+ title=""></p>
+<h3> Esempi </h3>
+<h4> #4 Cheese </h4>
+<pre><code><b><img src="Images/index_gr_59.gif" border="0"
+ alt="[Graphics:Images/index_gr_59.gif]" hspace="56" width="195"
+ height="439" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_60.gif" border="0"
+ alt="[Graphics:Images/index_gr_60.gif]" hspace="56" width="518"
+ height="39" align="middle"></b></code></pre>
+<p> <img src="Images/index_gr_61.gif" border="0"
+ alt="[Graphics:Images/index_gr_61.gif]" hspace="56" width="288"
+ height="288" align="middle"></p>
+<p> <img src="Images/index_gr_62.gif" border="0"
+ alt="[Graphics:Images/index_gr_62.gif]" hspace="56" width="288"
+ height="288" align="middle"></p>
+<p> <img src="Images/index_gr_63.gif" border="0"
+ alt="[Graphics:Images/index_gr_63.gif]" hspace="56" width="288"
+ height="288" align="middle"></p>
+<p> <img src="Images/index_gr_64.gif" border="0"
+ alt="[Graphics:Images/index_gr_64.gif]" hspace="56" width="288"
+ height="288" align="middle"></p>
+<h4> #5 Cross </h4>
+<pre><code><b><img src="Images/index_gr_65.gif" border="0"
+ alt="[Graphics:Images/index_gr_65.gif]" hspace="56" width="173"
+ height="179" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_66.gif" border="0"
+ alt="[Graphics:Images/index_gr_66.gif]" hspace="56" width="674"
+ height="59" align="middle"></b></code></pre>
+<p> <img src="Images/index_gr_67.gif" border="0"
+ alt="[Graphics:Images/index_gr_67.gif]" hspace="56" width="288"
+ height="313" align="middle"></p>
+<p> <img src="Images/index_gr_68.gif" border="0"
+ alt="[Graphics:Images/index_gr_68.gif]" hspace="56" width="288"
+ height="313" align="middle"></p>
+<p> <img src="Images/index_gr_69.gif" border="0"
+ alt="[Graphics:Images/index_gr_69.gif]" hspace="56" width="288"
+ height="313" align="middle"></p>
+<p> <img src="Images/index_gr_70.gif" border="0"
+ alt="[Graphics:Images/index_gr_70.gif]" hspace="56" width="288"
+ height="313" align="middle"></p>
+<h4> #6 Connected Cylinders </h4>
+<pre><code><b><img src="Images/index_gr_71.gif" border="0"
+ alt="[Graphics:Images/index_gr_71.gif]" hspace="56" width="874"
+ height="319" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_72.gif" border="0"
+ alt="[Graphics:Images/index_gr_72.gif]" hspace="56" width="677"
+ height="79" align="middle"></b></code></pre>
+<p> <img src="Images/index_gr_73.gif" border="0"
+ alt="[Graphics:Images/index_gr_73.gif]" hspace="56" width="288"
+ height="313" align="middle"></p>
+<p> <img src="Images/index_gr_74.gif" border="0"
+ alt="[Graphics:Images/index_gr_74.gif]" hspace="56" width="288"
+ height="313" align="middle"></p>
+<p> <img src="Images/index_gr_75.gif" border="0"
+ alt="[Graphics:Images/index_gr_75.gif]" hspace="56" width="288"
+ height="313" align="middle"></p>
+<p> <img src="Images/index_gr_76.gif" border="0"
+ alt="[Graphics:Images/index_gr_76.gif]" hspace="56" width="288"
+ height="313" align="middle"></p>
+<pre><code><b><img src="Images/index_gr_77.gif" border="0"
+ alt="[Graphics:Images/index_gr_77.gif]" hspace="56" width="323"
+ height="19" align="middle"></b></code></pre>
+<a name="S6.9.1"></a><a name="S6.9.1"></a>
+<pre><code><b><img src="Images/index_gr_78.gif" border="0"
+ alt="[Graphics:Images/index_gr_78.gif]" hspace="56" width="530"
+ height="79" align="middle"></b></code></pre>
+<p> <img src="Images/index_gr_79.gif" border="0"
+ alt="[Graphics:Images/index_gr_79.gif]" hspace="56" width="266"
+ height="288" align="middle"></p>
+<pre><code><b><img src="Images/index_gr_80.gif" border="0"
+ alt="[Graphics:Images/index_gr_80.gif]" hspace="56" width="294"
+ height="18" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_81.gif" border="0"
+ alt="[Graphics:Images/index_gr_81.gif]" hspace="56" width="925"
+ height="19" align="middle"></b></code></pre>
+<p> <img src="Images/index_gr_82.gif" border="0"
+ alt="[Graphics:Images/index_gr_82.gif]" hspace="56" width="288"
+ height="288" align="middle"></p>
+<h5> #6.1 </h5>
+<p> Per essere proprio precisi la procedura andrebbe ritoccata per
+ottenere un profilo rigorosamente cilindrico.<br>
+Per ottenere un cilindro a partire da un parallelepipedo quadrato
+occorre chiamare la funzione lima con un fattore opportuno.<br>
+Il fattore in questione avrebbe la forma <img
+ src="Images/index_gr_83.gif" border="0"
+ alt="[Graphics:Images/index_gr_83.gif]" width="107" height="51"
+ align="middle">, con n livello di innestamento (passo 0, quadrato,
+n=1).<br>
+Ma il difetto &egrave; poco rilevante ai fini della resa grafica. </p>
+<h3> Complessit&agrave; </h3>
+<p> La funzione &egrave; molto costosa in termini di tempo di calcolo.
+Basti pensare che l'oggetto "limato" contiene un numero di poligoni
+circa 3.8 volte quello di ingresso. <br>
+All'interno della funzione Lima le operazioni si suddividono nella
+costruzione dei tre tipi di poligoni (ristretti, a partire dai vecchi
+poligoni; centrali, a partire dai vertici; laterali, a partire dalle
+linee), ciascuna avente dei costi fissi pi&ugrave; costi lineari e per
+lo pi&ugrave; costi quadratici su strutture ausiliarie. </p>
+<pre><code><b><img src="Images/index_gr_84.gif" border="0"
+ alt="[Graphics:Images/index_gr_84.gif]" hspace="56" width="228"
+ height="19" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_85.gif" border="0"
+ alt="[Graphics:Images/index_gr_85.gif]" hspace="56" width="970"
+ height="319" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_86.gif" border="0"
+ alt="[Graphics:Images/index_gr_86.gif]" hspace="56" width="376"
+ height="79" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_87.gif" border="0"
+ alt="[Graphics:Images/index_gr_87.gif]" hspace="57" width="396"
+ height="18" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_88.gif" border="0"
+ alt="[Graphics:Images/index_gr_88.gif]" hspace="56" width="376"
+ height="59" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_89.gif" border="0"
+ alt="[Graphics:Images/index_gr_89.gif]" hspace="57" width="633"
+ height="18" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_90.gif" border="0"
+ alt="[Graphics:Images/index_gr_90.gif]" hspace="56" width="376"
+ height="59" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_91.gif" border="0"
+ alt="[Graphics:Images/index_gr_91.gif]" hspace="57" width="678"
+ height="18" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_92.gif" border="0"
+ alt="[Graphics:Images/index_gr_92.gif]" hspace="56" width="224"
+ height="19" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_93.gif" border="0"
+ alt="[Graphics:Images/index_gr_93.gif]" hspace="57" width="867"
+ height="113" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_94.gif" border="0"
+ alt="[Graphics:Images/index_gr_94.gif]" hspace="56" width="216"
+ height="19" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_95.gif" border="0"
+ alt="[Graphics:Images/index_gr_95.gif]" hspace="57" width="872"
+ height="113" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_96.gif" border="0"
+ alt="[Graphics:Images/index_gr_96.gif]" hspace="56" width="186"
+ height="19" align="middle"></b></code></pre>
+<table>
+  <tbody>
+    <tr>
+      <td> <samp><samp>Tetrahedron</samp></samp> </td>
+      <td>
+      <table>
+        <tbody>
+          <tr>
+            <td> 4 </td>
+          </tr>
+          <tr>
+            <td> 6 </td>
+          </tr>
+          <tr>
+            <td> 4 </td>
+          </tr>
+          <tr>
+            <td> <img src="Images/index_gr_97.gif" border="0"
+ alt="[Graphics:Images/index_gr_97.gif]" width="77" height="17"
+ align="middle"> </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td>
+      <table>
+        <tbody>
+          <tr>
+            <td> 14 </td>
+          </tr>
+          <tr>
+            <td> 24 </td>
+          </tr>
+          <tr>
+            <td> 12 </td>
+          </tr>
+          <tr>
+            <td> <img src="Images/index_gr_98.gif" border="0"
+ alt="[Graphics:Images/index_gr_98.gif]" width="77" height="17"
+ align="middle"> </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td>
+      <table>
+        <tbody>
+          <tr>
+            <td> 50 </td>
+          </tr>
+          <tr>
+            <td> 96 </td>
+          </tr>
+          <tr>
+            <td> 48 </td>
+          </tr>
+          <tr>
+            <td> <img src="Images/index_gr_99.gif" border="0"
+ alt="[Graphics:Images/index_gr_99.gif]" width="77" height="17"
+ align="middle"> </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td>
+      <table>
+        <tbody>
+          <tr>
+            <td> 194 </td>
+          </tr>
+          <tr>
+            <td> 384 </td>
+          </tr>
+          <tr>
+            <td> 192 </td>
+          </tr>
+          <tr>
+            <td> <img src="Images/index_gr_100.gif" border="0"
+ alt="[Graphics:Images/index_gr_100.gif]" width="84" height="17"
+ align="middle"> </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+    <tr>
+      <td> <samp><samp>Cube</samp></samp> </td>
+      <td>
+      <table>
+        <tbody>
+          <tr>
+            <td> 6 </td>
+          </tr>
+          <tr>
+            <td> 12 </td>
+          </tr>
+          <tr>
+            <td> 8 </td>
+          </tr>
+          <tr>
+            <td> <img src="Images/index_gr_101.gif" border="0"
+ alt="[Graphics:Images/index_gr_101.gif]" width="77" height="17"
+ align="middle"> </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td>
+      <table>
+        <tbody>
+          <tr>
+            <td> 26 </td>
+          </tr>
+          <tr>
+            <td> 48 </td>
+          </tr>
+          <tr>
+            <td> 24 </td>
+          </tr>
+          <tr>
+            <td> <img src="Images/index_gr_102.gif" border="0"
+ alt="[Graphics:Images/index_gr_102.gif]" width="77" height="17"
+ align="middle"> </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td>
+      <table>
+        <tbody>
+          <tr>
+            <td> 98 </td>
+          </tr>
+          <tr>
+            <td> 192 </td>
+          </tr>
+          <tr>
+            <td> 96 </td>
+          </tr>
+          <tr>
+            <td> <img src="Images/index_gr_103.gif" border="0"
+ alt="[Graphics:Images/index_gr_103.gif]" width="84" height="17"
+ align="middle"> </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td>
+      <table>
+        <tbody>
+          <tr>
+            <td> 386 </td>
+          </tr>
+          <tr>
+            <td> 768 </td>
+          </tr>
+          <tr>
+            <td> 384 </td>
+          </tr>
+          <tr>
+            <td> <img src="Images/index_gr_104.gif" border="0"
+ alt="[Graphics:Images/index_gr_104.gif]" width="84" height="17"
+ align="middle"> </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+    <tr>
+      <td> <samp><samp>Octahedron</samp></samp> </td>
+      <td>
+      <table>
+        <tbody>
+          <tr>
+            <td> 8 </td>
+          </tr>
+          <tr>
+            <td> 12 </td>
+          </tr>
+          <tr>
+            <td> 6 </td>
+          </tr>
+          <tr>
+            <td> <img src="Images/index_gr_105.gif" border="0"
+ alt="[Graphics:Images/index_gr_105.gif]" width="77" height="17"
+ align="middle"> </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td>
+      <table>
+        <tbody>
+          <tr>
+            <td> 26 </td>
+          </tr>
+          <tr>
+            <td> 48 </td>
+          </tr>
+          <tr>
+            <td> 24 </td>
+          </tr>
+          <tr>
+            <td> <img src="Images/index_gr_106.gif" border="0"
+ alt="[Graphics:Images/index_gr_106.gif]" width="77" height="17"
+ align="middle"> </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td>
+      <table>
+        <tbody>
+          <tr>
+            <td> 98 </td>
+          </tr>
+          <tr>
+            <td> 192 </td>
+          </tr>
+          <tr>
+            <td> 96 </td>
+          </tr>
+          <tr>
+            <td> <img src="Images/index_gr_107.gif" border="0"
+ alt="[Graphics:Images/index_gr_107.gif]" width="84" height="17"
+ align="middle"> </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td>
+      <table>
+        <tbody>
+          <tr>
+            <td> 386 </td>
+          </tr>
+          <tr>
+            <td> 768 </td>
+          </tr>
+          <tr>
+            <td> 384 </td>
+          </tr>
+          <tr>
+            <td> <img src="Images/index_gr_108.gif" border="0"
+ alt="[Graphics:Images/index_gr_108.gif]" width="91" height="17"
+ align="middle"> </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+    <tr>
+      <td> <samp><samp>Cheese</samp></samp> </td>
+      <td>
+      <table>
+        <tbody>
+          <tr>
+            <td> 72 </td>
+          </tr>
+          <tr>
+            <td> 144 </td>
+          </tr>
+          <tr>
+            <td> 64 </td>
+          </tr>
+          <tr>
+            <td> <img src="Images/index_gr_109.gif" border="0"
+ alt="[Graphics:Images/index_gr_109.gif]" width="77" height="17"
+ align="middle"> </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td>
+      <table>
+        <tbody>
+          <tr>
+            <td> 280 </td>
+          </tr>
+          <tr>
+            <td> 576 </td>
+          </tr>
+          <tr>
+            <td> 288 </td>
+          </tr>
+          <tr>
+            <td> <img src="Images/index_gr_110.gif" border="0"
+ alt="[Graphics:Images/index_gr_110.gif]" width="84" height="17"
+ align="middle"> </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td>
+      <table>
+        <tbody>
+          <tr>
+            <td> 1144 </td>
+          </tr>
+          <tr>
+            <td> 2304 </td>
+          </tr>
+          <tr>
+            <td> 1152 </td>
+          </tr>
+          <tr>
+            <td> <img src="Images/index_gr_111.gif" border="0"
+ alt="[Graphics:Images/index_gr_111.gif]" width="98" height="17"
+ align="middle"> </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td> <samp><samp></samp></samp> <br>
+      </td>
+    </tr>
+    <tr>
+      <td> <samp><samp>Cross</samp></samp> </td>
+      <td>
+      <table>
+        <tbody>
+          <tr>
+            <td> 30 </td>
+          </tr>
+          <tr>
+            <td> 60 </td>
+          </tr>
+          <tr>
+            <td> 32 </td>
+          </tr>
+          <tr>
+            <td> <img src="Images/index_gr_112.gif" border="0"
+ alt="[Graphics:Images/index_gr_112.gif]" width="77" height="17"
+ align="middle"> </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td>
+      <table>
+        <tbody>
+          <tr>
+            <td> 122 </td>
+          </tr>
+          <tr>
+            <td> 240 </td>
+          </tr>
+          <tr>
+            <td> 120 </td>
+          </tr>
+          <tr>
+            <td> <img src="Images/index_gr_113.gif" border="0"
+ alt="[Graphics:Images/index_gr_113.gif]" width="84" height="17"
+ align="middle"> </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td>
+      <table>
+        <tbody>
+          <tr>
+            <td> 482 </td>
+          </tr>
+          <tr>
+            <td> 960 </td>
+          </tr>
+          <tr>
+            <td> 480 </td>
+          </tr>
+          <tr>
+            <td> <img src="Images/index_gr_114.gif" border="0"
+ alt="[Graphics:Images/index_gr_114.gif]" width="91" height="17"
+ align="middle"> </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td> <samp><samp></samp></samp> <br>
+      </td>
+    </tr>
+    <tr>
+      <td> <img src="Images/index_gr_115.gif" border="0"
+ alt="[Graphics:Images/index_gr_115.gif]" width="133" height="17"
+ align="middle"> </td>
+      <td>
+      <table>
+        <tbody>
+          <tr>
+            <td> 360 </td>
+          </tr>
+          <tr>
+            <td> 720 </td>
+          </tr>
+          <tr>
+            <td> 352 </td>
+          </tr>
+          <tr>
+            <td> <img src="Images/index_gr_116.gif" border="0"
+ alt="[Graphics:Images/index_gr_116.gif]" width="91" height="17"
+ align="middle"> </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td>
+      <table>
+        <tbody>
+          <tr>
+            <td> 1432 </td>
+          </tr>
+          <tr>
+            <td> 2880 </td>
+          </tr>
+          <tr>
+            <td> 1440 </td>
+          </tr>
+          <tr>
+            <td> <img src="Images/index_gr_117.gif" border="0"
+ alt="[Graphics:Images/index_gr_117.gif]" width="98" height="17"
+ align="middle"> </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td> <samp><samp></samp></samp> <br>
+      </td>
+      <td> <samp><samp></samp></samp> <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<pre><code><b><img src="Images/index_gr_118.gif" border="0"
+ alt="[Graphics:Images/index_gr_118.gif]" hspace="56" width="436"
+ height="39" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_119.gif" border="0"
+ alt="[Graphics:Images/index_gr_119.gif]" hspace="57" width="345"
+ height="18" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_120.gif" border="0"
+ alt="[Graphics:Images/index_gr_120.gif]" hspace="56" width="371"
+ height="20" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_121.gif" border="0"
+ alt="[Graphics:Images/index_gr_121.gif]" hspace="57" width="137"
+ height="18" align="middle"></samp></pre>
+<p> Nota che NonlinearFit fallisce nel caso "Connected Cylinders" con
+due punti </p>
+<pre><code><b><img src="Images/index_gr_122.gif" border="0"
+ alt="[Graphics:Images/index_gr_122.gif]" hspace="56" width="968"
+ height="39" align="middle"></b></code></pre>
+<p> <img src="Images/index_gr_123.gif" border="0"
+ alt="[Graphics:Images/index_gr_123.gif]" hspace="56" width="288"
+ height="288" align="middle"></p>
+<pre><code><b><img src="Images/index_gr_124.gif" border="0"
+ alt="[Graphics:Images/index_gr_124.gif]" hspace="56" width="643"
+ height="20" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_125.gif" border="0"
+ alt="[Graphics:Images/index_gr_125.gif]" hspace="56" width="649"
+ height="17" align="middle"></samp></pre>
+<pre><samp><img src="Images/index_gr_126.gif" border="0"
+ alt="[Graphics:Images/index_gr_126.gif]" hspace="57" width="212"
+ height="18" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_127.gif" border="0"
+ alt="[Graphics:Images/index_gr_127.gif]" hspace="56" width="128"
+ height="19" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_128.gif" border="0"
+ alt="[Graphics:Images/index_gr_128.gif]" hspace="57" width="137"
+ height="18" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_129.gif" border="0"
+ alt="[Graphics:Images/index_gr_129.gif]" hspace="56" width="226"
+ height="74" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_130.gif" border="0"
+ alt="[Graphics:Images/index_gr_130.gif]" hspace="57" width="77"
+ height="18" align="middle"></samp></pre>
+<pre><samp><img src="Images/index_gr_131.gif" border="0"
+ alt="[Graphics:Images/index_gr_131.gif]" hspace="57" width="345"
+ height="18" align="middle"></samp></pre>
+<pre><samp><img src="Images/index_gr_132.gif" border="0"
+ alt="[Graphics:Images/index_gr_132.gif]" hspace="57" width="98"
+ height="18" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_133.gif" border="0"
+ alt="[Graphics:Images/index_gr_133.gif]" hspace="56" width="968"
+ height="39" align="middle"></b></code></pre>
+<p> <img src="Images/index_gr_134.gif" border="0"
+ alt="[Graphics:Images/index_gr_134.gif]" hspace="56" width="288"
+ height="288" align="middle"></p>
+<pre><code><b><img src="Images/index_gr_135.gif" border="0"
+ alt="[Graphics:Images/index_gr_135.gif]" hspace="56" width="136"
+ height="19" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_136.gif" border="0"
+ alt="[Graphics:Images/index_gr_136.gif]" hspace="57" width="91"
+ height="18" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_137.gif" border="0"
+ alt="[Graphics:Images/index_gr_137.gif]" hspace="56" width="237"
+ height="19" align="middle"></b></code></pre>
+<h3> Export </h3>
+<pre><code><b><img src="Images/index_gr_138.gif" border="0"
+ alt="[Graphics:Images/index_gr_138.gif]" hspace="56" width="288"
+ height="19" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_139.gif" border="0"
+ alt="[Graphics:Images/index_gr_139.gif]" hspace="56" width="282"
+ height="19" align="middle"></b></code></pre>
+<a name="S6.9.1"></a><a name="S6.9.1"></a>
+<hr> <font face="Helvetica, Arial" size="1">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;October 6, 2003</font><!-- // *** Barra di navigazione - inizio *** // -->
+<hr align="center" width="100%">
+<center>
+<table class="navbar">
+  <tbody>
+    <tr>
+      <td><a href="../../index.html">HOME</a></td>
+      <td><a href="../../Personal/personal.html">PERSONAL</a></td>
+      <td><a href="../../Projects/projects.html">PROJECTS</a></td>
+      <td>LINKS</td>
+      <td><a href="mailto:eziogale@libero.it">E-MAIL</a></td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<hr align="center" width="100%"><!-- // *** Barra di navigazione - fine *** // -->
+</body>
+</html>
