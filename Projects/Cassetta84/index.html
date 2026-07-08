@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <title>
+  Casset87
+ </title>
+ <link href="HTMLFiles/Default.css" rel="stylesheet" type="text/css" />
+</head>
+<body style="font-size: 100%;">
+<p class="Title">
+ Controllo di velocit&agrave; per musicassette
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_1.gif' alt='"Casset87_1.gif"' width='333' height='207' style='vertical-align:middle' />
+</p>
+<p class="Text">
+ Bologna 22/12/1998
+</p>
+<p class="Section">
+ Introduzione
+</p>
+<p class="Text">
+ Anche se i supporti magnetici a nastro sono ormai obsoleti per i dati, le musicassette sono ancora molto diffuse.<br />Altrettanto diffusi sono i lettori. Oltre alla fedelt&agrave; di riproduzione penso che un criterio per valutarne la qualit&agrave; siano la maneggevolezza e la praticit&agrave;. Il problema fondamentale del supporto a nastro &egrave; la lentezza di accesso e la difficolt&agrave; di ricerca dei dati. Dopo aver osservato diversi tipi di lettori mi sono reso conto che la meccanica di tutti &egrave; basata sullo stesso principio, e che molto spesso anche la realizzazione &egrave; identica. Molte case costruttici montano quindi la stessa meccanica e producono di conseguenza dispositivi della medesima qualit&agrave;. Nel corso di diversi anni ho avuto in riparazione molti registratori a cassetta e penso di avere individuato i loro punti deboli. Un prodotto cos&igrave; diffuso da cos&igrave; tanto tempo &egrave; sicuramente il meglio che si possa avere in temini di economicit&agrave; e qualit&
+agrave;. Nonostate questo mi &egrave; venuto il dubbio che probabilmente le leggi di mercato avessero schiacciato alla nascita, un prodotto tecnicamente superiore.
+</p>
+<p class="Text">
+ Verr&agrave; affontato in seguito il progetto di un lettore fondamentalmente diverso da quello tradizionale. Verr&agrave; trattata essenzialmente la parte matematica del problema, e si cercher&agrave; di stabilire se esistono soluzioni; qualora esistessero&nbsp;&nbsp;(esatte o approssimate), completare il progetto con la realizzazione di un sistema a micropocessore in grado di calcolarle. Il dispositivo avrebbe cos&igrave; una meccanica pi&ugrave; semplice, ma un controllore a microprocessore alquanto complesso; ma questo non dovrebbe gravare sui costi vista l'enorme diffusione dei microcontroller.
+</p>
+<p class="Section">
+ Il lettore per cassette standard
+</p>
+<p class="Text">
+ Il principio di funzionamento dei registratori a cassette classici richiede che il nastro magnetico scorra a contatto con la testina a velocit&agrave; costante pari a 3 m/min.
+</p>
+<p class="Text">
+ Il sistema meccanico che &egrave; pi&ugrave; in uso, probabilmente l'unico, &egrave; composto di due perni e di un sistema chiamato &quot;caps&quot;. Quando il lettore &egrave; in &quot;play&quot; un perno &egrave; messo in rotazione per mezzo di una frizione in modo da sviluppare una coppia costante, l'altro perno &egrave; in folle e il &quot;caps&quot;, che &egrave; a contatto con il nastro, lo trascina a velocit&agrave; costante. provvede a fare scorrere il nastro a velocit&agrave; costante. 
+</p>
+<p class="Text">
+ Il &quot;caps&quot; &egrave; costituito da un perno d'acciaio che ruota a velocit&agrave; costante e da una rotella di gomma che costringe il nastro a l contatto con il perno. Il perno d'acciaio &egrave; solidale al volano, un disco pesante messo in moto da una trasmissione a cinghia, e costituisce il punto critico della meccanica in questione.
+</p>
+<p class="Text">
+ La parte meccania pi&ugrave; esposta ad usura &egrave; sicuramente la sede di questo perno d'acciaio, un anello di ottone incastrato al telaio. L'anello si usura per effetto di coppie non assiali causate dal peso del volano stesso, nel caso di un montaggio verticale, o dalla pressione della ruota di gomma, in ogni caso. Gli effetti indesiderati derivanti da questa usura sono oscillazioni parassite che si sommano alla velocit&agrave; costante; e ben pi&ugrave; grave il fatto che il nastro scappa dal &quot;caps&quot; e si avvolge rovinosamente nella ruota di gomma. Quest'ultimo problema deriva dal fatto che il perno non &egrave; pi&ugrave; in asse con la rotella di gomma.
+</p>
+<p class="Section">
+ Il lettore per cassette senza &quot;caps&quot;
+</p>
+<p class="Text">
+ Nel seguito verr&agrave; presentata una possibile realizzazione del lettore che non faccia uso del sistema &quot;caps&quot; sopra esposto.<br />Per limitare il pi&ugrave; possibile l'usura del nastro si pu&ograve; evitare il contatto con la testina ed eliminare il sistema &quot;caps&quot;.
+</p>
+<p class="Text">
+ L'idea &egrave; quella di semplificare se possibile la parte meccanica e delegare a un sistema a microprocessore i compiti pi&ugrave; gravosi. Si pu&ograve; schematizzare la struttura del lettore in questo modo: ai due perni che avvolgono o svolgono le bobine sono collegati rispettivamente due motori e ad ogni perno un encoder ottico.
+</p>
+<p class="Text">
+ Se alimentiamo un motore in modo che faccia ruotare un perno a velocit&agrave; costante, il nastro non scorrer&agrave; davanti alla testina a velocit&agrave; costante perch&egrave; il diametro della bobina avvolta cresce nel tempo. Conoscendo le relazioni cinematiche opportune si pu&ograve; pensare di regolare la velocit&agrave; del motore nel tempo in modo da ottenere una velocit&agrave; costante del nastro.
+</p>
+<p class="Section">
+ Obiettivi
+</p>
+<p class="Text">
+ L'obiettivo del progetto &egrave; evidentemente quello di migliorare i tempi e le modalit&agrave; di accesso al nastro.<br />A tal fine &egrave; utile l'esatta misura dei parametri fisici della cassetta, nonch&eacute; la posizione del nastro. I parametri fisici sono r, h, l; rispettivamente il raggio dei supporti dove &egrave; avvolto il nastro, lo spessore del nastro e la lunghezza totale del nastro (proporzionale alla durata).
+</p>
+<p class="Section">
+ Il Problema analitico
+</p>
+<p class="Text">
+ L'equazione del nastro descrive la lunghezza l di un nastro avvolto su un perno di raggio r, al variare dei giri a (rad), noto lo spessore del nastro h.
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_2.gif' alt='"Casset87_2.gif"' width='192' height='45' style='vertical-align:middle' />
+</p>
+<p class="Text">
+ Dall'equazione del nastro si ricava quella della cassetta.<br />Questa volta il nastro che viene svolto da un perno, &egrave; riavvolto su un perno identico al primo. L' equazione che segue lega i giri del perno 1 (a1), con quelli che compie il perno 2 (a2), note le costante r, h, l.<br />Si noti che questa volta l &egrave; una costante: &egrave; infatti l'intera lunghezza del nastro.
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_3.gif' alt='"Casset87_3.gif"' width='279' height='45' style='vertical-align:middle' />
+</p>
+<p class="Text">
+ Queste due equazioni costituiscono il modello del sistema.
+</p>
+<p class="Text">
+ Noti i parametri fisci (r,h,l) &egrave; possibile implementare un controllore che regoli la velocit&agrave; di avvolgimento in modo che il nastro scorra a velocit&agrave; costante.
+</p>
+<p class="Text">
+ Il problema &egrave; misurare i parametri. Infatti le cassette in commercio sono molto differenti tra loro:<br />&nbsp;&nbsp;&nbsp;&nbsp;l = 10 .. 400 metri<br />&nbsp;&nbsp;&nbsp;&nbsp;h = 0.01 .. 0.02 mm<br />&nbsp;&nbsp;&nbsp;&nbsp;r = 10 .. 14 mm.
+</p>
+<p class="Text">
+ Se il lettore &egrave; equipaggiato dei soli due encoder ottici il problema non &egrave; risolubile analiticamente.
+</p>
+<p class="Text">
+ Ulterirori informazioni sul sistema si posso ricavare da considerazioni di carattere pi&ugrave; generale: <br />&nbsp;&nbsp;&nbsp;&nbsp;i parametri sono largamente variabili ma hanno delle relazioni tra loro (ad es. i nastri lunghi sono i pi&ugrave; sottili);<br />&nbsp;&nbsp;&nbsp;&nbsp;esistono dei vincoli matematici che limitano la variabilit&agrave; dei parametri che nascono dal fatto che le dimensioni della cassetta sono fissate e cos&igrave; limitano il diametro massimo che possono assumere le bobine completamente avvolte.
+</p>
+<p class="Subsection">
+ Condizioni al contorno: limiti di capienza
+</p>
+<p class="Text">
+ La condizione pi&ugrave; immediata riguarda il fatto che, a nastro completamente riavvolto, la bobina deve entrare nel supporto la cui dimensione &egrave; costante e nota (circa 42.5 mm).Un' altra condizione nasce dalla misura dello spazio libero tra le due bobine.Questo non sar&agrave; costante, ma varier&agrave; in funzione di a.
+</p>
+<p class="Subsubsection">
+ Spazio tra le bobine
+</p>
+<p class="Text">
+ Esprimiamo questa distanza in funzione di : r, h, l : i parametri fisici;<br />a: la posizione del nastro;<br />d: la distanza tra gli assi dei due perni. Chiamiamo con g la distanza da determinare.Impostiamo un sistema di equazioni che, una volta risolte, daranno un' espressione simbolica di g.In un secondo tempo sostituiremo a g i valori numerici di una cassetta reale.
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_4.gif' alt='"Casset87_4.gif"' width='338' height='128' style='vertical-align:middle' />
+</p>
+<p class="Output">
+ <img src='HTMLFiles/Casset87_5.gif' alt='"Casset87_5.gif"' width='312' height='36' style='vertical-align:middle' />
+</p>
+<p class="Text">
+ Prima equazione: espressione di g. Seconda espressione: osservando una faccia della cassetta, esprime la conservazione della somma delle aree delle due bobine. In altre parole il nastro che si srotola dal perno 1 va a finire sul perno 2, il disco di ingombro della bobina 1 si riduce e quello 2 si accresce. g1 &egrave; la funzione che ci interessa, ma prima di rappresentarla dobbiamo eliminare a1 ed a2. Sfrutteremo l'equazione della cassetta.
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_6.gif' alt='"Casset87_6.gif"' width='349' height='99' style='vertical-align:middle' />
+</p>
+<p class="Output">
+ <img src='HTMLFiles/Casset87_7.gif' alt='"Casset87_7.gif"' width='360' height='225' style='vertical-align:middle' />
+</p>
+<p class="Section">
+ Primo procedimento
+</p>
+<p class="Text">
+ Rimandiamo per ora lo studio sulle tecniche per misurare in automatico i parametri fisici di una casseta sconosciuta.
+</p>
+<p class="Text">
+ Supponendo di avere a disposizione in un database i parametri fisici (r,h,l) di un certo numero di cassette campione, si pu&ograve; pensare di rappresentare questi dati come un insieme di punti nello spazio tridimensionale (r,h,l).
+</p>
+<p class="Text">
+ Due misure del rapporto &quot;diametro bobina 1 / diametro bobina 2&quot;, effettuate a distanza step una dall'altra forniscono i numeri M1 ed M2.<br />Utilizzando l'equazione della cassetta, l'espressione analitica del diametro delle bobine, e introducendo i valori numerici delle costanti M1, M2, step, si ricava una equazione nelle tre incognite r, h, l.<br />L'equazione di cui sopra si pu&ograve; rappresentare nello stesso spazio come una superficie.<br />Si pu&ograve; ora studiare l'appartenenza dei punti alla superficie.<br />Se siamo fortunati un solo punto apparterr&agrave; alla superficie: avremo in questo modo individuato la cassetta incognita dalla sola misura di M1, M2.
+</p>
+<p class="Text">
+ Resta da implementare una procedura snella che misuri le distanze tra i punti e la superficie.<br />Solo conoscendo queste distanze, infatti si pu&ograve; pensare di implementare un algoritmo numerico in vista di una realizzazione pratica del dispositivo.<br />Solo conoscendo l'ordine di grandezza di queste distanze si pu&ograve; avere un'idea degli errori che si possono tollerare.<br />Gli errori derivanti dagli algoritmi di calcolo dovrebbero essere contenibili ad arbitrio. Sicuramente sar&agrave; pi&ugrave; difficile controllare gli errori di misura.<br />I valori contenuti nel database dovranno contenere anche i rispettivi errori, e lo stesso vale per i due numeri M1 ed M2. Questo significa che i punti saranno piuttosto delle regioni di spazio (parallelepipedi o ellissoidi), e la superficie sar&agrave; la regione di spazio delimitata da due superfici.
+</p>
+<p class="Text">
+ La superficie viene approssimata da un piano.<br />Il piano che viene scelto &egrave; quello passante per i punti { px, py, sup[ px, py] },<br />{ px, sup[ px, pz], pz} e { sup[ py, pz], py, pz}, dove sup[ ] &egrave; di volta in volta l'equazione della superficie risolta rispetto a ciascuna delle variabili.<br />La risoluzione simbolica di queste equazioni &egrave; troppo complessa; si sostituiscono allora all' eq tutti i valori noti e si risolve numericamente l'equazione in una variabile cos&igrave; ottenuta.<br />La procedura fallisce quando la soluzione dell'equazione rispetto ad r non esiste; tuttavia questo non &egrave; un problema perch&egrave; accade per punti lontani dalla superfcie.
+</p>
+<p class="Text">
+ questo accade quando i punti sono troppo &quot;alti&quot; e suprano il vertice del praboloide.
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_8.gif' alt='"Casset87_8.gif"' width='188' height='42' style='vertical-align:middle' />
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_9.gif' alt='"Casset87_9.gif"' width='282' height='42' style='vertical-align:middle' />
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_10.gif' alt='"Casset87_10.gif"' width='1669' height='82' style='vertical-align:middle' />
+</p>
+<p class="Output">
+ <img src='HTMLFiles/Casset87_11.gif' alt='"Casset87_11.gif"' width='1316' height='48' style='vertical-align:middle' />
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_12.gif' alt='"Casset87_12.gif"' width='844' height='13' style='vertical-align:middle' />
+</p>
+<p class="Output">
+ <img src='HTMLFiles/Casset87_13.gif' alt='"Casset87_13.gif"' width='360' height='373' style='vertical-align:middle' />
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_14.gif' alt='"Casset87_14.gif"' width='697' height='13' style='vertical-align:middle' />
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_15.gif' alt='"Casset87_15.gif"' width='432' height='222' style='vertical-align:middle' />
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_16.gif' alt='"Casset87_16.gif"' width='778' height='13' style='vertical-align:middle' />
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_17.gif' alt='"Casset87_17.gif"' width='1003' height='31' style='vertical-align:middle' />
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_18.gif' alt='"Casset87_18.gif"' width='1231' height='48' style='vertical-align:middle' />
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_19.gif' alt='"Casset87_19.gif"' width='1459' height='169' style='vertical-align:middle' />
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_20.gif' alt='"Casset87_20.gif"' width='269' height='13' style='vertical-align:middle' />
+</p>
+<p class="Output">
+ <img src='HTMLFiles/Casset87_21.gif' alt='"Casset87_21.gif"' width='72' height='13' style='vertical-align:middle' />
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_22.gif' alt='"Casset87_22.gif"' width='517' height='13' style='vertical-align:middle' />
+</p>
+<p class="Output">
+ <img src='HTMLFiles/Casset87_23.gif' alt='"Casset87_23.gif"' width='1483' height='327' style='vertical-align:middle' />
+</p>
+<p class="Section">
+ Secondo procedimento
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_24.gif' alt='"Casset87_24.gif"' width='248' height='43' style='vertical-align:middle' />
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_25.gif' alt='"Casset87_25.gif"' width='1344' height='117' style='vertical-align:middle' />
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_26.gif' alt='"Casset87_26.gif"' width='623' height='13' style='vertical-align:middle' />
+</p>
+<p class="Output">
+ <img src='HTMLFiles/Casset87_27.gif' alt='"Casset87_27.gif"' width='1121' height='114' style='vertical-align:middle' />
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_28.gif' alt='"Casset87_28.gif"' width='1295' height='13' style='vertical-align:middle' />
+</p>
+<p class="Output">
+ <img src='HTMLFiles/Casset87_29.gif' alt='"Casset87_29.gif"' width='1445' height='2377' style='vertical-align:middle' />
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_30.gif' alt='"Casset87_30.gif"' width='178' height='13' style='vertical-align:middle' />
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_31.gif' alt='"Casset87_31.gif"' width='279' height='13' style='vertical-align:middle' />
+</p>
+<p class="Output">
+ <img src='HTMLFiles/Casset87_32.gif' alt='"Casset87_32.gif"' width='360' height='224' style='vertical-align:middle' />
+</p>
+<p class="Input">
+ <img src='HTMLFiles/Casset87_33.gif' alt='"Casset87_33.gif"' width='224' height='31' style='vertical-align:middle' />
+</p>
+<p class="Output">
+ <img src='HTMLFiles/Casset87_34.gif' alt='"Casset87_34.gif"' width='360' height='359' style='vertical-align:middle' />
+</p>
+</body>
+</html>
