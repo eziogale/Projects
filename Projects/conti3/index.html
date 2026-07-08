@@ -1,0 +1,289 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>contisimpl3.nb</title>
+  <link href="../../css/common.css" rel="stylesheet" type="text/css">
+</head>
+<body style="background-color: rgb(255, 255, 255);">
+<!-- // *** Barra di navigazione - inizio *** // -->
+<hr align="center" width="100%">
+<center>
+<table class="navbar">
+  <tbody>
+    <tr>
+      <td><a href="../../index.html">HOME</a></td>
+      <td><a href="../../Personal/personal.html">PERSONAL</a></td>
+      <td><a href="../../Projects/projects.html">PROJECTS</a></td>
+      <td>LINKS</td>
+      <td><a href="mailto:eziogale@libero.it">E-MAIL</a></td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<hr align="center" width="100%"><!-- // *** Barra di navigazione - fine *** // -->
+<h1> Conti </h1>
+<h3> Intro </h3>
+<p> Per gestire le transazioni economiche tra N persone si &egrave;
+svilupppato un programma dedicato. Il software salva lo stato dei debiti
+che corrono tra gli utenti in una matrice; ogni elemento contiene il
+debito dell'utente identificato col numero di riga con quello
+identificato dal numero della colonna. L'informazione &egrave; tutta
+contenuta nella matrice triangolare superiore, tuttavia &egrave;
+risultato utile riempire la triangolare inferiore con i valori opposti,
+la diagonale &egrave; nulla. </p>
+<p> Dopo un certo tempo di utilizzo del software capita che a fronte di
+numerose transazioni qualche casellina riporti valori eccessivi
+nonostante il totale debiti di un utente sia limitato. </p>
+<p> Se ad esempio l'utente A deve 5 a B, B deve 5 a C &egrave; palese
+che la transazione riguarda A e C. </p>
+<p> Esiste in verit&agrave; un altro criterio pi&ugrave; intuitivo. La
+situazione dei debiti &egrave; pi&ugrave; sineticamente espressa da un
+numero inferiore di valori: i totali debiti di ciascuno (e non i singoli
+debiti). Si pu&ograve; pensare a questa visione come "a cassa comune". </p>
+<p> L'informazione sulla situazione economica della casa &egrave; tutta
+contenuta nella rappresentazione "totale debiti di ciascuno". Fissati i
+valori dei "debiti totali" ci sono infiniti modi di riempire le caselle
+della rappresentazione a "matrice". </p>
+<p> Ci si propone di studiare il problema per passare da una
+rappresentazione all'altra. Vista la praticit&agrave; della
+rappresentazione "a matrice", si vuole inoltre trovare la
+rappresentazione ottima (se esiste, se &egrave; unica o meno...) a
+partire dai valori numerici dei "debiti totali". </p>
+<h3> Analitical </h3>
+<p> N persone. N importi. <img src="Images/index_gr_1.gif" border="0"
+ alt="[Graphics:Images/index_gr_1.gif]" width="72" height="30"
+ align="middle"> transazioni </p>
+<p> Questa &egrave; la rappresentazione "a matrice": </p>
+<pre><code><b><img src="Images/index_gr_2.gif" border="0"
+ alt="[Graphics:Images/index_gr_2.gif]" hspace="45" width="932"
+ height="81" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_3.gif" border="0"
+ alt="[Graphics:Images/index_gr_3.gif]" hspace="45" width="99"
+ height="38" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_4.gif" border="0"
+ alt="[Graphics:Images/index_gr_4.gif]" hspace="47" width="170"
+ height="65" align="middle"></samp></pre>
+<p> Le nostre incognite sono gli elementi della triangolare superiore.
+Le chiameremo vars. </p>
+<pre><code><b><img src="Images/index_gr_5.gif" border="0"
+ alt="[Graphics:Images/index_gr_5.gif]" hspace="45" width="434"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_6.gif" border="0"
+ alt="[Graphics:Images/index_gr_6.gif]" hspace="47" width="209"
+ height="17" align="middle"></samp></pre>
+<p> L'unico vincolo cui devono soddisfare le incognite &egrave; che la
+somma degli elementi di ciascuna riga (o colonna) &egrave; noto. <br>
+Sono dati infatti gli N valori corrispondenti ai "debiti totali". </p>
+<pre><code><b><img src="Images/index_gr_7.gif" border="0"
+ alt="[Graphics:Images/index_gr_7.gif]" hspace="45" width="199"
+ height="63" align="middle"></b></code></pre>
+<table>
+  <tbody>
+    <tr>
+      <td> <img src="Images/index_gr_8.gif" border="0"
+ alt="[Graphics:Images/index_gr_8.gif]" width="105" height="17"
+ align="middle"> </td>
+    </tr>
+    <tr>
+      <td> <img src="Images/index_gr_9.gif" border="0"
+ alt="[Graphics:Images/index_gr_9.gif]" width="97" height="17"
+ align="middle"> </td>
+    </tr>
+    <tr>
+      <td> <img src="Images/index_gr_10.gif" border="0"
+ alt="[Graphics:Images/index_gr_10.gif]" width="97" height="17"
+ align="middle"> </td>
+    </tr>
+    <tr>
+      <td> <img src="Images/index_gr_11.gif" border="0"
+ alt="[Graphics:Images/index_gr_11.gif]" width="97" height="17"
+ align="middle"> </td>
+    </tr>
+  </tbody>
+</table>
+<p> Si imposta un sistema nelle <img src="Images/index_gr_12.gif"
+ border="0" alt="[Graphics:Images/index_gr_12.gif]" width="72"
+ height="30" align="middle"> incognite costituito da N equazioni.<br>
+Il problema risulta non chiuso gi&agrave; a partire da N=3 persone. </p>
+<p> Questo sistema non omogeneo &egrave; rappresentabile geometricamente
+da una variet&agrave; lineare. </p>
+<p> Si cerca di ottenere che la configurazione a "matrice", ovvero le
+nostre vars, contenga valori piccoli.<br>
+Una possibile condizione geometrica che esprima questa condizione
+&egrave; che il modulo del vettore {vars} sia minimo. </p>
+<p> Segue una funzione di utilit&agrave; che ci permette di passare
+dalla nostra rappresentazione "a matrice", alla matrice acratteristica
+del sistema in questione. </p>
+<pre><code><b><img src="Images/index_gr_13.gif" border="0"
+ alt="[Graphics:Images/index_gr_13.gif]" hspace="45" width="932"
+ height="163" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_14.gif" border="0"
+ alt="[Graphics:Images/index_gr_14.gif]" hspace="45" width="293"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_15.gif" border="0"
+ alt="[Graphics:Images/index_gr_15.gif]" hspace="47" width="545"
+ height="77" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_16.gif" border="0"
+ alt="[Graphics:Images/index_gr_16.gif]" hspace="45" width="365"
+ height="18" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_17.gif" border="0"
+ alt="[Graphics:Images/index_gr_17.gif]" hspace="45" width="117"
+ height="58" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_18.gif" border="0"
+ alt="[Graphics:Images/index_gr_18.gif]" hspace="47" width="164"
+ height="61" align="middle"></samp></pre>
+<pre><samp><img src="Images/index_gr_19.gif" border="0"
+ alt="[Graphics:Images/index_gr_19.gif]" hspace="47" width="11"
+ height="17" align="middle"></samp></pre>
+<p> Le nostre variabili </p>
+<pre><code><b><img src="Images/index_gr_20.gif" border="0"
+ alt="[Graphics:Images/index_gr_20.gif]" hspace="45" width="271"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_21.gif" border="0"
+ alt="[Graphics:Images/index_gr_21.gif]" hspace="47" width="149"
+ height="17" align="middle"></samp></pre>
+<p> I termini noti </p>
+<pre><code><b><img src="Images/index_gr_22.gif" border="0"
+ alt="[Graphics:Images/index_gr_22.gif]" hspace="45" width="265"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_23.gif" border="0"
+ alt="[Graphics:Images/index_gr_23.gif]" hspace="47" width="102"
+ height="17" align="middle"></samp></pre>
+<p> Il sistema </p>
+<pre><code><b><img src="Images/index_gr_24.gif" border="0"
+ alt="[Graphics:Images/index_gr_24.gif]" hspace="45" width="60"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_25.gif" border="0"
+ alt="[Graphics:Images/index_gr_25.gif]" hspace="47" width="429"
+ height="17" align="middle"></samp></pre>
+<p> La trasformazione lineare associata &egrave;: </p>
+<pre><code><b><img src="Images/index_gr_26.gif" border="0"
+ alt="[Graphics:Images/index_gr_26.gif]" hspace="45" width="81"
+ height="18" align="middle"></b></code></pre>
+<p> Vogliamo risolvere il sistema f[x]&amp;Equal;k </p>
+<pre><code><b><img src="Images/index_gr_27.gif" border="0"
+ alt="[Graphics:Images/index_gr_27.gif]" hspace="45" width="197"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_28.gif" border="0"
+ alt="[Graphics:Images/index_gr_28.gif]" hspace="47" width="445"
+ height="17" align="middle"></samp></pre>
+<p> Scegliamo per i termini noti dei valori numerici validi. </p>
+<pre><code><b><img src="Images/index_gr_29.gif" border="0"
+ alt="[Graphics:Images/index_gr_29.gif]" hspace="45" width="311"
+ height="38" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_30.gif" border="0"
+ alt="[Graphics:Images/index_gr_30.gif]" hspace="47" width="249"
+ height="17" align="middle"></samp></pre>
+<p> La soluzione particolare. </p>
+<pre><code><b><img src="Images/index_gr_31.gif" border="0"
+ alt="[Graphics:Images/index_gr_31.gif]" hspace="45" width="202"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_32.gif" border="0"
+ alt="[Graphics:Images/index_gr_32.gif]" hspace="47" width="264"
+ height="17" align="middle"></samp></pre>
+<p> Una base delo spazio soluzione del sistema omogeneo A.x&amp;Equal;0 </p>
+<pre><code><b><img src="Images/index_gr_33.gif" border="0"
+ alt="[Graphics:Images/index_gr_33.gif]" hspace="45" width="225"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_34.gif" border="0"
+ alt="[Graphics:Images/index_gr_34.gif]" hspace="47" width="132"
+ height="45" align="middle"></samp></pre>
+<p> La soluzione generale &egrave; data da quella paricolare sommata
+agli elementi della omogenea pesati da N coefficienti </p>
+<pre><code><b><img src="Images/index_gr_35.gif" border="0"
+ alt="[Graphics:Images/index_gr_35.gif]" hspace="45" width="373"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_36.gif" border="0"
+ alt="[Graphics:Images/index_gr_36.gif]" hspace="47" width="630"
+ height="17" align="middle"></samp></pre>
+<p> per il calcolo numerico occorre calare nel particolare: <br>
+N=4 </p>
+<pre><code><b><img src="Images/index_gr_37.gif" border="0"
+ alt="[Graphics:Images/index_gr_37.gif]" hspace="45" width="257"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_38.gif" border="0"
+ alt="[Graphics:Images/index_gr_38.gif]" hspace="47" width="441"
+ height="17" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_39.gif" border="0"
+ alt="[Graphics:Images/index_gr_39.gif]" hspace="45" width="232"
+ height="21" align="middle"></b></code></pre>
+<pre><code><b><img src="Images/index_gr_40.gif" border="0"
+ alt="[Graphics:Images/index_gr_40.gif]" hspace="45" width="409"
+ height="19" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_41.gif" border="0"
+ alt="[Graphics:Images/index_gr_41.gif]" hspace="47" width="339"
+ height="17" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_42.gif" border="0"
+ alt="[Graphics:Images/index_gr_42.gif]" hspace="45" width="229"
+ height="19" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_43.gif" border="0"
+ alt="[Graphics:Images/index_gr_43.gif]" hspace="47" width="493"
+ height="17" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_44.gif" border="0"
+ alt="[Graphics:Images/index_gr_44.gif]" hspace="45" width="258"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_45.gif" border="0"
+ alt="[Graphics:Images/index_gr_45.gif]" hspace="47" width="279"
+ height="17" align="middle"></samp></pre>
+<p> N=5: </p>
+<pre><code><b><img src="Images/index_gr_46.gif" border="0"
+ alt="[Graphics:Images/index_gr_46.gif]" hspace="45" width="377"
+ height="118" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_47.gif" border="0"
+ alt="[Graphics:Images/index_gr_47.gif]" hspace="47" width="407"
+ height="17" align="middle"></samp></pre>
+<pre><samp><img src="Images/index_gr_48.gif" border="0"
+ alt="[Graphics:Images/index_gr_48.gif]" hspace="47" width="701"
+ height="17" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_49.gif" border="0"
+ alt="[Graphics:Images/index_gr_49.gif]" hspace="45" width="526"
+ height="19" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_50.gif" border="0"
+ alt="[Graphics:Images/index_gr_50.gif]" hspace="47" width="535"
+ height="17" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_51.gif" border="0"
+ alt="[Graphics:Images/index_gr_51.gif]" hspace="45" width="229"
+ height="19" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_52.gif" border="0"
+ alt="[Graphics:Images/index_gr_52.gif]" hspace="47" width="890"
+ height="17" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_53.gif" border="0"
+ alt="[Graphics:Images/index_gr_53.gif]" hspace="45" width="395"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_54.gif" border="0"
+ alt="[Graphics:Images/index_gr_54.gif]" hspace="47" width="475"
+ height="17" align="middle"></samp></pre>
+<pre><code><b><img src="Images/index_gr_55.gif" border="0"
+ alt="[Graphics:Images/index_gr_55.gif]" hspace="45" width="60"
+ height="18" align="middle"></b></code></pre>
+<pre><samp><img src="Images/index_gr_56.gif" border="0"
+ alt="[Graphics:Images/index_gr_56.gif]" hspace="47" width="230"
+ height="17" align="middle"></samp></pre>
+<h3> Conclusioni </h3>
+<p> Unicit&agrave;:<br>
+&nbsp;&nbsp;Trattandosi di veriet&agrave; lineare, minimizzare un
+vettore che la descrive &egrave; un problema banale risolvibile con gli
+strumenti dell'algebra lineare. La soluzione esiste ed &egrave; unica.<br>
+&nbsp;&nbsp;Il modulo del vettore &egrave; descritto da una conica (in
+N (N-1)/2 dimensioni), quindi il minimo se esiste &egrave; unico.
+Imponendo che il gradiente sia nullo si ottine un sistema di facile
+soluzione. </p>
+<hr> <font face="Helvetica, Arial" size="1">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;October 6, 2003</font><!-- // *** Barra di navigazione - inizio *** // -->
+<hr align="center" width="100%">
+<center>
+<table class="navbar">
+  <tbody>
+    <tr>
+      <td><a href="../../index.html">HOME</a></td>
+      <td><a href="../../Personal/personal.html">PERSONAL</a></td>
+      <td><a href="../../Projects/projects.html">PROJECTS</a></td>
+      <td>LINKS</td>
+      <td><a href="mailto:eziogale@libero.it">E-MAIL</a></td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<hr align="center" width="100%"><!-- // *** Barra di navigazione - fine *** // -->
+</body>
+</html>
